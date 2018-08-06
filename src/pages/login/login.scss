@@ -1,0 +1,38 @@
+page-login {
+
+
+        .top-margin{
+             
+            margin-top: 100px;
+        }
+          .bottom-border input{
+              border-bottom: 1px dimgray solid;
+                    }
+        
+        
+            .button-style
+            {
+                font-size: 12px;
+                text-transform: none;
+            }
+        
+            .bottom-item{
+        
+                position: fixed;
+                bottom: 0;
+                margin-bottom: 10px;
+                
+        
+            }  
+            .alert-style
+            {
+                color: black;
+                //background: black;
+            }
+        
+            ion-item { margin-bottom: 32px !important; }
+        
+        
+        
+
+}

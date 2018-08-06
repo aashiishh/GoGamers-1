@@ -1,0 +1,39 @@
+<ion-content padding class="black-background">
+
+  <div class="top-margin">
+<h2 class="center-item white-font">Demo App</h2>
+
+
+<div class="bottom-border white-font" style="padding: 20px">
+
+
+<ion-input type="text" placeholder="Email" [(ngModel)]="user.email" name="email"></ion-input>
+<ion-input type="password" placeholder="Password" [(ngModel)]="user.password" name="password"></ion-input>
+
+<button class="button-style" [disabled]="ifEmpty()" ion-button (click)="login()">Log In<ion-icon style="padding-left: 50px" name="arrow-dropright"></ion-icon></button>
+<br>
+
+</div>
+</div>
+<div style="padding-left: 20px">
+    <label style="color:dimgray;padding-right: 2px">Forgot Password??</label>
+    <label class="white-font" (click)="forgotPassword()"><u>Get Here</u></label>
+</div>
+
+<!--<div style="padding: 30px 0px 30px 0px;text-align: center">
+  <label style="color:dimgray;">OR</label>
+</div>
+-->
+
+<!-- <div style="padding: 20px 0px 0px 0px;text-align: center">
+
+  <button ion-button color="secondary" block (click)="goto()">Login wtih Phone Number  <ion-icon style="padding-left: 3px" name="phone-portrait"></ion-icon> </button>
+
+</div> -->
+  <div class="bottom-item" style="padding-left: 20px">
+  <label style="color:dimgray;padding-right: 5px">Do not have an Account??</label>
+  <label class="white-font" (click)="signUp()">Sign Up</label>
+</div>
+
+
+</ion-content>
