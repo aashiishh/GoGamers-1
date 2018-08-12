@@ -1,0 +1,33 @@
+page-popover {
+
+  /*  .button-red 
+    {
+        background: red;
+        padding: 12px 90px;
+        border-radius: 5%;
+    }
+    .button-black 
+    {
+        background: black;
+        padding: 12px 90px;
+        border-radius: 5%;
+    } */
+
+    .button-color
+    {
+       // background:rgb(42, 110, 165);
+       // padding: 12px 90px;
+      //  border-radius: 5%
+      font-size: 18px;
+    } 
+    .gg button{
+        border-bottom: 1px white solid;
+        background: rgb(42, 110, 165);
+        font-weight: bold;
+        text-transform: none;  
+        color: white;
+        height: 50px;
+        margin: 0px
+    }
+
+}

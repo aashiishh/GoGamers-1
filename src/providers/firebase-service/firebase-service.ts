@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { User } from '../../app/Model/user';
 import { MessageService } from '../message/message';
+import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 
 @Injectable()
 export class FirebaseService {
@@ -9,8 +11,8 @@ export class FirebaseService {
   user = {} as User;
 isAuthenticated : boolean;
 
-  constructor(private mesgService:MessageService) {
-    firebase.auth().onAuthStateChanged(user => {
+  constructor(private mesgService:MessageService,private afAuth:AngularFireAuth,private afDB:AngularFireDatabase) {
+   this.afAuth.auth.onAuthStateChanged(user => {
       if(user)
       this.isAuthenticated= true;
       else
@@ -19,9 +21,19 @@ isAuthenticated : boolean;
 
   }
 
+ async addUserInDatabase(user : User)
+  {
+       await this.afDB.database.ref().child('Users').child(user.uId).set({
+            name : user.name,
+            phoneNumber : user.phoneNumber,
+            photourl : user.photoUrl
+        });
+  }
+
+
   async sendEmailVerificationLink()
   {
-        await firebase.auth().currentUser.sendEmailVerification().then(() => {
+        await this.afAuth.auth.currentUser.sendEmailVerification().then(() => {
           this.mesgService.PopUp('Congratulations!!','You are Registered Successfully, Please verify your email address through the link we have sent you on your email address.');
         }).catch(err =>
         {
@@ -32,7 +44,7 @@ isAuthenticated : boolean;
   currentUser()
   {
      if(this.isAuthenticated)
-      return firebase.auth().currentUser; 
+      return this.afAuth.auth.currentUser; 
      else
      console.log("No Authenticated user")
   }

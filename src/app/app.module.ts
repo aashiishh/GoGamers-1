@@ -16,6 +16,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 //import { app } from '../../node_modules/firebase';
 import { firebase_config } from './app.firebase.config';
 import { ProfilePage } from '../pages/profile/profile';
+import { PopoverPage } from '../pages/popover/popover';
+//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera } from '@ionic-native/camera';
+import { FilePath } from '@ionic-native/file-path';
+import { Transfer } from '@ionic-native/transfer';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,8 @@ import { ProfilePage } from '../pages/profile/profile';
     HomePage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,8 @@ import { ProfilePage } from '../pages/profile/profile';
     HomePage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    PopoverPage
   ],
   providers: [
     StatusBar,
@@ -46,7 +54,14 @@ import { ProfilePage } from '../pages/profile/profile';
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MessageService,
-    FirebaseService
+    FirebaseService,
+    File,
+    Transfer,
+    Camera,
+    FilePath,
+   // FileTransfer,
+  //  FileUploadOptions,
+  //  FileTransferObject
   ]
 })
 export class AppModule {}

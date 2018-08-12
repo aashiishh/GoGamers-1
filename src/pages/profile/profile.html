@@ -1,17 +1,14 @@
 <ion-content no-padding>
   <ion-row>
   <ion-buttons end>
-     <button ion-button clear icon-only (click)="dismiss()"> <ion-icon name="close-circle"></ion-icon></button>
+     <button ion-button clear icon-only (click)="close()"> <ion-icon name="close-circle"></ion-icon></button>
    </ion-buttons>
    <ion-title text-center>Update Profile</ion-title>
  </ion-row>
 
 
-
-
-
  <div text-center>
-     <ion-img class="circle-pic" width="80" height="80" src="{{imgsrc}}"></ion-img>
+     <ion-img class="circle-pic" width="80" height="80" src="{{imgsrc}}" (click)="presentActionSheet()"></ion-img>
   
   </div>
    <!--<ul>

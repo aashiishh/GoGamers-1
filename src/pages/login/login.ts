@@ -30,7 +30,7 @@ export class LoginPage {
   {
     this.mesgService.showLoading();
     await this.afAuth.auth.signInWithEmailAndPassword(this.user.email,this.user.password).then( () => {
-      if(!this.afAuth.auth.currentUser.emailVerified)
+      if(this.afAuth.auth.currentUser.emailVerified)
     {
       console.log("Successfully logged In");
       this.navCtrl.setRoot(HomePage);

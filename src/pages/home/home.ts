@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-import { ProfilePage } from '../profile/profile';
+import { NavController, PopoverController } from 'ionic-angular';
+//import { ProfilePage } from '../profile/profile';
+import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-home',
@@ -8,7 +9,7 @@ import { ProfilePage } from '../profile/profile';
 })
 export class HomePage {
   imgsrc : string;
-  constructor(public navCtrl: NavController,public modalCtrl:ModalController) {
+  constructor(public navCtrl: NavController,public popoverCtrl: PopoverController) {
 
   }
 
@@ -16,9 +17,11 @@ export class HomePage {
     this.imgsrc = "http://downloadicons.net/sites/default/files/contacts-icon-64397.png";
   }
 
-  openProfile() {
-    let modal = this.modalCtrl.create(ProfilePage);
-     modal.present();
-  }
+  
+
+openPopOver() {
+  const popover = this.popoverCtrl.create(PopoverPage);
+    popover.present();
+}
 
 }
