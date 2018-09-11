@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { User } from '../../app/Model/user';
 import { HomePage } from '../home/home';
 //import * as firebase from 'firebase';
@@ -17,7 +17,7 @@ export class LoginPage {
   public user = {} as User;
   public isAuthenticated : boolean;
 
-  constructor(private afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, private mesgService:MessageService) {
+  constructor(private afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, private mesgService:MessageService,public alertCtrl:AlertController) {
   }
 
   signUp()
@@ -47,6 +47,47 @@ export class LoginPage {
     
 
   }
+
+  forgotPassword()
+  {
+    
+      let alert = this.alertCtrl.create({
+        title: 'Change Password',
+        inputs: [
+          {
+            name: 'email',
+            placeholder: 'enter your email'
+          },
+       /*   {
+            name: 'password',
+            placeholder: 'Password',
+            type: 'password'
+          }*/
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: data => {
+             this.mesgService.Toast("change password request cancelled.")
+            }
+          },
+          {
+            text: 'Send',
+            handler: data => {
+              this.afAuth.auth.sendPasswordResetEmail(data.email).then(()=>{
+                this.mesgService.Toast("Reset password link has been sent on your email address")
+              }).catch((er)=>{
+                console.error(er);
+                this.mesgService.PopUp("oops!","entered email address is not registered")
+              })
+            }
+          }
+        ]
+      });
+      alert.present();
+  }
+
 
 
   ionViewDidLoad() {

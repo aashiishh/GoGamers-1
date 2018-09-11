@@ -65,16 +65,19 @@ export class ProfilePage {
     // Get the data of an image
     this.camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
+      this.imgsrc = imagePath;
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
         this.filePath.resolveNativePath(imagePath)
           .then(filePath => {
             let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+           // this.imgsrc= correctPath;
             let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
             this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
           });
       } else {
         var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
         var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+      //  this.imgsrc = correctPath;
         this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
       }
     }, (err) => {
@@ -93,6 +96,9 @@ export class ProfilePage {
     private copyFileToLocalDir(namePath, currentName, newFileName) {
       this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
         this.lastImage = newFileName;
+        //my code
+       this.imgsrc =  this.pathForImage(this.lastImage);
+       //mycode ends
       }, error => {
         this.mesService.Toast('Error while storing file.');
       });
